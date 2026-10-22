@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINEXON PRIME | Premium & Affordable Website Design in Sri Lanka</title>
+    <meta name="description" content="Modern, responsive, and affordable website design for Sri Lankan small businesses, shops, tuition teachers, and entrepreneurs. Packages from Rs. 5,000 to Rs. 25,000.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#080808',
+                            surface: '#141414',
+                            surfaceLight: '#1E1E1E',
+                            red: '#FF3030',
+                            redGlow: 'rgba(255, 48, 48, 0.4)',
+                            grey: '#A0A0A0',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-red': '0 0 20px rgba(255, 48, 48, 0.35), 0 0 40px rgba(255, 48, 48, 0.1)',
+                        'neon-red-lg': '0 0 35px rgba(255, 48, 48, 0.5), 0 0 70px rgba(255, 48, 48, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080808;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 48, 48, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px -10px rgba(255, 48, 48, 0.25);
+        }
+
+        /* Animated Neon Border Grid */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Custom Neon Glow Text */
+        .neon-text-red {
+            text-shadow: 0 0 12px rgba(255, 48, 48, 0.6);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF3030;
+        }
+
+        /* Animated Light Sweep */
+        @keyframes lightSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        .light-sweep-element {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-sweep-element::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: skewX(-25deg) translateX(-150%);
+        }
+
+        .light-sweep-element:hover::after {
+            animation: lightSweep 0.8s ease-in-out;
+        }
+
+        /* Custom Floating Cursor Spotlight */
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,48,48,0.12) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, opacity 0.3s;
+            z-index: 9999;
+        }
+
+        /* Reduced Motion Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            #cursor-glow { display: none; }
+        }
+    </style>
+</head>
+<body class="relative selection:bg-brand-red selection:text-white">
+
+    <!-- Desktop Cursor Glow -->
+    <div id="cursor-glow" class="hidden md:block"></div>
+
+    <!-- ==========================================
+         01. OPTIONAL INTRO ANIMATION (First Visitors)
+    =========================================== -->
+    <div id="intro-screen" class="fixed inset-0 z-[100] bg-brand-black flex flex-col items-center justify-center p-4 transition-opacity duration-700">
+        <div class="relative flex flex-col items-center text-center max-w-lg">
+            <!-- Neon Logo Icon -->
+            <div id="intro-logo" class="w-20 h-20 mb-6 rounded-2xl bg-brand-surface border border-brand-red/40 flex items-center justify-center shadow-neon-red opacity-0 transform scale-75 transition-all duration-700">
+                <i class="fa-solid fa-bolt text-brand-red text-4xl"></i>
+            </div>
+            
+            <!-- Brand Name & Light Sweep Reveal -->
+            <div id="intro-title" class="overflow-hidden mb-3 opacity-0 transition-all duration-700">
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-wider text-white">
+                    THINEXON <span class="text-brand-red neon-text-red">PRIME</span>
+                </h1>
+            </div>
+
+            <!-- Tagline -->
+            <p id="intro-tagline" class="text-sm sm:text-base text-brand-grey font-medium tracking-widest uppercase opacity-0 transition-all duration-700 delay-300">
+                BUILD YOUR DIGITAL FUTURE.
+            </p>
+
+            <!-- Skip Intro Button -->
+            <button onclick="dismissIntro()" class="mt-8 px-6 py-2 rounded-full border border-white/20 text-xs font-semibold uppercase tracking-wider text-brand-grey hover:text-white hover:border-brand-red transition-all duration-300">
+                Skip Intro <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         02. STICKY HEADER & NAVIGATION BAR
+    =========================================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-brand-surface border border-brand-red/50 flex items-center justify-center shadow-neon-red group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-bolt text-brand-red text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white">THINEXON</span>
+                    <span class="text-xl font-black tracking-wider text-brand-red">PRIME</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">Home</a>
+                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">About</a>
+                <a href="#services" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">Services</a>
+                <a href="#portfolio" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">Portfolio</a>
+                <a href="#packages" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">Packages</a>
+                <a href="#faq" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">FAQ</a>
+                <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-brand-red transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20would%20like%20to%20get%20a%20website%20for%20my%20business." 
+                   target="_blank" 
+                   rel="noopener font-semibold"
+                   class="light-sweep-element px-5 py-2.5 rounded-xl bg-brand-red text-white text-sm font-bold shadow-neon-red hover:bg-red-600 transition-all duration-300 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Get Your Website</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl p-2 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-surface/95 border-b border-white/10 px-6 py-6 transition-all duration-300">
+            <div class="flex flex-col gap-4">
+                <a href="#home" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">Home</a>
+                <a href="#about" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">About</a>
+                <a href="#services" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">Services</a>
+                <a href="#portfolio" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">Portfolio</a>
+                <a href="#packages" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">Packages</a>
+                <a href="#faq" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">FAQ</a>
+                <a href="#contact" class="mobile-nav-link text-base font-medium text-gray-200 hover:text-brand-red">Contact</a>
+                <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20would%20like%20to%20get%20a%20website%20for%20my%20business." 
+                   target="_blank" 
+                   class="mt-2 w-full py-3 rounded-xl bg-brand-red text-center text-white text-sm font-bold shadow-neon-red flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Chat on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         03. HERO SECTION
+    =========================================== -->
+    <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center grid-bg overflow-hidden">
+        <!-- Ambient Red Background Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-red/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface border border-brand-red/30 text-xs sm:text-sm font-semibold text-brand-red uppercase tracking-wider shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span>
+                        Sri Lanka's Premier Digital Agency
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                        WE BUILD WEBSITES THAT <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-red-400 to-white neon-text-red">BUILD YOUR BUSINESS.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-brand-grey max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Modern, responsive, and affordable websites for Sri Lankan businesses. Turn your ideas into a professional online presence with <span class="text-white font-semibold">THINEXON PRIME</span>.
+                    </p>
+
+                    <!-- Hero CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-brand-black text-sm font-extrabold hover:bg-gray-200 transition-all duration-300 shadow-lg text-center">
+                            Explore Our Portfolio
+                        </a>
+                        <a href="#packages" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-surface border border-white/20 text-white text-sm font-bold hover:border-brand-red hover:text-brand-red transition-all duration-300 text-center">
+                            View Website Packages
+                        </a>
+                        <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20have%20an%20inquiry%20about%20your%20website%20services." 
+                           target="_blank" 
+                           class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-red text-white text-sm font-bold shadow-neon-red hover:bg-red-600 transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Trust Highlights -->
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <p class="text-xs text-brand-grey uppercase">Starting Price</p>
+                            <p class="text-lg sm:text-xl font-extrabold text-brand-red">Rs. 5,000</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-brand-grey uppercase">Target Market</p>
+                            <p class="text-lg sm:text-xl font-extrabold text-white">Sri Lanka</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-brand-grey uppercase">Mobile Support</p>
+                            <p class="text-lg sm:text-xl font-extrabold text-white">100% Responsive</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column Interactive Mockup Illustration -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md lg:max-w-none">
+                        
+                        <!-- Animated Laptop Frame Mockup -->
+                        <div class="relative z-20 bg-brand-surface rounded-2xl border border-white/15 p-3 shadow-2xl backdrop-blur-xl transform lg:rotate-1 hover:rotate-0 transition-transform duration-500">
+                            <!-- Screen Header Controls -->
+                            <div class="flex items-center justify-between pb-3 px-2 border-b border-white/10 mb-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                                </div>
+                                <span class="text-[10px] text-brand-grey font-mono">thinexonprime.lk</span>
+                            </div>
+                            
+                            <!-- Interactive Mockup Canvas Content -->
+                            <div class="relative rounded-lg overflow-hidden bg-brand-black aspect-video border border-white/5 group">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Website Preview Mockup" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                                     onerror="this.src='https://placehold.co/800x450/141414/FF3030?text=THINEXON+PRIME+PREVIEW'">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                                <div class="absolute bottom-4 left-4 right-4 text-left">
+                                    <span class="px-2 py-0.5 rounded bg-brand-red/80 text-[10px] font-bold uppercase tracking-wider text-white">Live Design</span>
+                                    <p class="text-sm font-bold text-white mt-1">High Impact Sri Lankan Business Portals</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Animated Smartphone Frame Mockup Overlay -->
+                        <div class="absolute -bottom-6 -left-6 z-30 w-36 sm:w-44 bg-brand-surface rounded-3xl border border-brand-red/40 p-2 shadow-neon-red transform -rotate-6 hover:rotate-0 transition-transform duration-500 hidden sm:block">
+                            <div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-2"></div>
+                            <div class="rounded-2xl overflow-hidden aspect-[9/16] bg-brand-black relative">
+                                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" 
+                                     alt="Mobile Responsive Mockup" 
+                                     class="w-full h-full object-cover opacity-85"
+                                     onerror="this.src='https://placehold.co/400x700/141414/FFFFFF?text=Mobile+Responsive'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 right-2 text-center">
+                                    <p class="text-[10px] font-semibold text-white">Mobile Optimized</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         04. ABOUT US SECTION
+    =========================================== -->
+    <section id="about" class="py-24 bg-brand-surface relative border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Graphic Workspace Visual -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red/20 rounded-full blur-3xl"></div>
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80" 
+                             alt="Web Design Workspace Illustration" 
+                             class="rounded-xl w-full object-cover h-80 opacity-90 group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/800x600/141414/FF3030?text=Web+Design+Workspace'">
+                        <div class="mt-4 p-4 rounded-xl bg-brand-black/60 border border-white/10 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-red text-xl">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-white">Dedicated Sri Lankan Agency</p>
+                                <p class="text-xs text-brand-grey">Crafting modern digital presences tailored for local growth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-black border border-white/10 text-xs font-semibold text-brand-grey uppercase">
+                        About THINEXON PRIME
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                        YOUR BUSINESS. OUR CREATIVITY. <br class="hidden sm:inline"/>
+                        <span class="text-brand-red neon-text-red">ONE POWERFUL WEBSITE.</span>
+                    </h2>
+                    <p class="text-brand-grey text-base leading-relaxed">
+                        THINEXON PRIME helps Sri Lankan entrepreneurs, local shops, tuition teachers, and small businesses establish a professional online presence through modern and affordable website design. Our goal is to create attractive, user-friendly websites that showcase your products, services, and business information.
+                    </p>
+
+                    <!-- Feature Highlights Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-brand-black/50 border border-white/10 flex items-center gap-3">
+                            <i class="fa-solid fa-wand-magic-sparkles text-brand-red text-xl"></i>
+                            <span class="text-sm font-bold text-white">Modern Design</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-brand-black/50 border border-white/10 flex items-center gap-3">
+                            <i class="fa-solid fa-mobile-screen-button text-brand-red text-xl"></i>
+                            <span class="text-sm font-bold text-white">Mobile-Friendly Layouts</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-brand-black/50 border border-white/10 flex items-center gap-3">
+                            <i class="fa-solid fa-tags text-brand-red text-xl"></i>
+                            <span class="text-sm font-bold text-white">Affordable Packages</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-brand-black/50 border border-white/10 flex items-center gap-3">
+                            <i class="fa-solid fa-user-gear text-brand-red text-xl"></i>
+                            <span class="text-sm font-bold text-white">Personalized Solutions</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         05. SERVICES SECTION
+    =========================================== -->
+    <section id="services" class="py-24 grid-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-brand-red uppercase tracking-widest px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20">What We Offer</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-4">TAILORED WEB SOLUTIONS</h2>
+                <p class="text-brand-grey mt-4 text-base">High performance website design services crafted specifically for the needs of Sri Lankan small businesses and professionals.</p>
+            </div>
+
+            <!-- Services Grid (6 Services) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- SERVICE 01 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:border-brand-red group-hover:shadow-neon-red transition-all duration-300">
+                            <i class="fa-solid fa-file-code"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-red font-bold">SERVICE 01</span>
+                        <h3 class="text-xl font-extrabold text-white mt-1 mb-3">One-Page Websites</h3>
+                        <p class="text-brand-grey text-sm leading-relaxed mb-6">
+                            Affordable single-page websites for individuals and small businesses looking for a concise online presence.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20One-Page%20Website%20service." 
+                       target="_blank" 
+                       class="mt-4 px-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red hover:text-brand-red transition-colors flex items-center justify-between">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- SERVICE 02 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:border-brand-red group-hover:shadow-neon-red transition-all duration-300">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-red font-bold">SERVICE 02</span>
+                        <h3 class="text-xl font-extrabold text-white mt-1 mb-3">Multi-Page Business Websites</h3>
+                        <p class="text-brand-grey text-sm leading-relaxed mb-6">
+                            Professional websites with dedicated pages for business information, services, and company background.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Multi-Page%20Business%20Website%20service." 
+                       target="_blank" 
+                       class="mt-4 px-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red hover:text-brand-red transition-colors flex items-center justify-between">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- SERVICE 03 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:border-brand-red group-hover:shadow-neon-red transition-all duration-300">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-red font-bold">SERVICE 03</span>
+                        <h3 class="text-xl font-extrabold text-white mt-1 mb-3">Product Showcase Websites</h3>
+                        <p class="text-brand-grey text-sm leading-relaxed mb-6">
+                            Websites that display products, prices, images, and direct customer enquiry options via WhatsApp.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Product%20Showcase%20Website%20service." 
+                       target="_blank" 
+                       class="mt-4 px-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red hover:text-brand-red transition-colors flex items-center justify-between">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- SERVICE 04 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:border-brand-red group-hover:shadow-neon-red transition-all duration-300">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-red font-bold">SERVICE 04</span>
+                        <h3 class="text-xl font-extrabold text-white mt-1 mb-3">Tuition Class Websites</h3>
+                        <p class="text-brand-grey text-sm leading-relaxed mb-6">
+                            Websites tailored for teachers and institutes to showcase subjects, schedules, and class registration details.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Tuition%20Class%20Website%20service." 
+                       target="_blank" 
+                       class="mt-4 px-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red hover:text-brand-red transition-colors flex items-center justify-between">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- SERVICE 05 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:border-brand-red group-hover:shadow-neon-red transition-all duration-300">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-red font-bold">SERVICE 05</span>
+                        <h3 class="text-xl font-extrabold text-white mt-1 mb-3">Website Redesign</h3>
+                        <p class="text-brand-grey text-sm leading-relaxed mb-6">
+                            Improve the visual appearance, overall layout, speed, and usability of existing outdated websites.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Website%20Redesign%20service." 
+                       target="_blank" 
+                       class="mt-4 px-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red hover:text-brand-red transition-colors flex items-center justify-between">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- SERVICE 06 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center text-brand-red text-2xl mb-6 group-hover:border-brand-red group-hover:shadow-neon-red transition-all duration-300">
+                            <i class="fa-solid fa-laptop-mobile"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-red font-bold">SERVICE 06</span>
+                        <h3 class="text-xl font-extrabold text-white mt-1 mb-3">Mobile-Responsive Design</h3>
+                        <p class="text-brand-grey text-sm leading-relaxed mb-6">
+                            Creating fluid layouts that adapt effortlessly across mobile phones, tablets, and desktop displays.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20Mobile-Responsive%20Design." 
+                       target="_blank" 
+                       class="mt-4 px-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red hover:text-brand-red transition-colors flex items-center justify-between">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         06. PORTFOLIO GALLERY SECTION
+    =========================================== -->
+    <section id="portfolio" class="py-24 bg-brand-surface border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold text-brand-red uppercase tracking-widest px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20">Our Work</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-4">DEMO PORTFOLIO PROJECTS</h2>
+                <p class="text-brand-grey mt-4 text-base">Explore our concept website designs engineered for various business industries in Sri Lanka.</p>
+            </div>
+
+            <!-- Category Filter Controls -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+                <button onclick="filterPortfolio('all')" class="portfolio-filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-red text-white transition-all duration-300" data-category="all">All Projects</button>
+                <button onclick="filterPortfolio('store')" class="portfolio-filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-black text-brand-grey border border-white/10 hover:border-brand-red transition-all duration-300" data-category="store">Retail & Shops</button>
+                <button onclick="filterPortfolio('fashion')" class="portfolio-filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-black text-brand-grey border border-white/10 hover:border-brand-red transition-all duration-300" data-category="fashion">Fashion</button>
+                <button onclick="filterPortfolio('food')" class="portfolio-filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-black text-brand-grey border border-white/10 hover:border-brand-red transition-all duration-300" data-category="food">Restaurant</button>
+                <button onclick="filterPortfolio('education')" class="portfolio-filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-black text-brand-grey border border-white/10 hover:border-brand-red transition-all duration-300" data-category="education">Education</button>
+                <button onclick="filterPortfolio('services')" class="portfolio-filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-black text-brand-grey border border-white/10 hover:border-brand-red transition-all duration-300" data-category="services">Services</button>
+            </div>
+
+            <!-- Portfolio Cards Grid (6 Projects) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- PORTFOLIO PROJECT 01 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group" data-category="store">
+                    <div class="relative h-56 bg-brand-black overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-brand-black/80 border border-brand-red/40 text-[10px] font-bold uppercase text-brand-red backdrop-blur-md">
+                            Concept Design
+                        </span>
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" 
+                             alt="NOVA TECH Preview" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
+                             onerror="this.src='https://placehold.co/800x600/080808/38bdf8?text=NOVA+TECH'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-extrabold text-white">NOVA TECH</h3>
+                            <span class="text-xs text-sky-400 font-semibold px-2 py-0.5 rounded bg-sky-950/60 border border-sky-500/30">Accessories</span>
+                        </div>
+                        <p class="text-brand-grey text-xs leading-relaxed mb-4">
+                            Phone cases, charging cables, earphones, product cards, and direct WhatsApp enquiry integration.
+                        </p>
+                        <div class="flex items-center gap-2 mb-6 text-[10px] font-mono text-gray-400">
+                            <span class="px-2 py-1 rounded bg-brand-surface">HTML5</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">Tailwind</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">JS</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDemoModal('NOVA TECH', 'Phone Accessories Store Concept featuring cases, chargers, and dark tech styling.', 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80')" class="px-3 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red text-center">
+                                View Demo
+                            </button>
+                            <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20want%20a%20website%20similar%20to%20NOVA%20TECH." target="_blank" class="px-3 py-2 rounded-lg bg-brand-red text-xs font-bold text-white hover:bg-red-600 text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO PROJECT 02 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group" data-category="fashion">
+                    <div class="relative h-56 bg-brand-black overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-brand-black/80 border border-brand-red/40 text-[10px] font-bold uppercase text-brand-red backdrop-blur-md">
+                            Concept Design
+                        </span>
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" 
+                             alt="LUNA FASHION Preview" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
+                             onerror="this.src='https://placehold.co/800x600/080808/f5f5dc?text=LUNA+FASHION'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-extrabold text-white">LUNA FASHION</h3>
+                            <span class="text-xs text-amber-200 font-semibold px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30">Clothing</span>
+                        </div>
+                        <p class="text-brand-grey text-xs leading-relaxed mb-4">
+                            Clothing collections, new arrivals gallery, elegant beige aesthetic, and customer enquiry options.
+                        </p>
+                        <div class="flex items-center gap-2 mb-6 text-[10px] font-mono text-gray-400">
+                            <span class="px-2 py-1 rounded bg-brand-surface">Beige Theme</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">Responsive</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDemoModal('LUNA FASHION', 'Elegant Fashion Website concept featuring clothing collections and lookbooks.', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80')" class="px-3 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red text-center">
+                                View Demo
+                            </button>
+                            <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20want%20a%20website%20similar%20to%20LUNA%20FASHION." target="_blank" class="px-3 py-2 rounded-lg bg-brand-red text-xs font-bold text-white hover:bg-red-600 text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO PROJECT 03 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group" data-category="food">
+                    <div class="relative h-56 bg-brand-black overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-brand-black/80 border border-brand-red/40 text-[10px] font-bold uppercase text-brand-red backdrop-blur-md">
+                            Concept Design
+                        </span>
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" 
+                             alt="TASTE HOUSE Preview" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
+                             onerror="this.src='https://placehold.co/800x600/080808/f97316?text=TASTE+HOUSE'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-extrabold text-white">TASTE HOUSE</h3>
+                            <span class="text-xs text-orange-400 font-semibold px-2 py-0.5 rounded bg-orange-950/60 border border-orange-500/30">Restaurant</span>
+                        </div>
+                        <p class="text-brand-grey text-xs leading-relaxed mb-4">
+                            Restaurant introduction, food gallery, opening hours, menu section, and location details.
+                        </p>
+                        <div class="flex items-center gap-2 mb-6 text-[10px] font-mono text-gray-400">
+                            <span class="px-2 py-1 rounded bg-brand-surface">Warm Theme</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">Menu Card</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDemoModal('TASTE HOUSE', 'Warm & inviting restaurant showcase website with interactive food menu preview.', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80')" class="px-3 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red text-center">
+                                View Demo
+                            </button>
+                            <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20want%20a%20website%20similar%20to%20TASTE%20HOUSE." target="_blank" class="px-3 py-2 rounded-lg bg-brand-red text-xs font-bold text-white hover:bg-red-600 text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO PROJECT 04 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group" data-category="education">
+                    <div class="relative h-56 bg-brand-black overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-brand-black/80 border border-brand-red/40 text-[10px] font-bold uppercase text-brand-red backdrop-blur-md">
+                            Concept Design
+                        </span>
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" 
+                             alt="SMART LEARN Preview" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
+                             onerror="this.src='https://placehold.co/800x600/080808/3b82f6?text=SMART+LEARN'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-extrabold text-white">SMART LEARN</h3>
+                            <span class="text-xs text-blue-400 font-semibold px-2 py-0.5 rounded bg-blue-950/60 border border-blue-500/30">Tuition</span>
+                        </div>
+                        <p class="text-brand-grey text-xs leading-relaxed mb-4">
+                            Teacher profiles, subjects, class schedules, timetable, and WhatsApp registration enquiries.
+                        </p>
+                        <div class="flex items-center gap-2 mb-6 text-[10px] font-mono text-gray-400">
+                            <span class="px-2 py-1 rounded bg-brand-surface">Navy Theme</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">Timetable</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDemoModal('SMART LEARN', 'Educational web portal designed for tuition teachers and institutes in Sri Lanka.', 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80')" class="px-3 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red text-center">
+                                View Demo
+                            </button>
+                            <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20want%20a%20website%20similar%20to%20SMART%20LEARN." target="_blank" class="px-3 py-2 rounded-lg bg-brand-red text-xs font-bold text-white hover:bg-red-600 text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO PROJECT 05 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group" data-category="store">
+                    <div class="relative h-56 bg-brand-black overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-brand-black/80 border border-brand-red/40 text-[10px] font-bold uppercase text-brand-red backdrop-blur-md">
+                            Concept Design
+                        </span>
+                        <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=800&q=80" 
+                             alt="AUTOCRAFT Preview" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
+                             onerror="this.src='https://placehold.co/800x600/080808/ef4444?text=AUTOCRAFT'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-extrabold text-white">AUTOCRAFT</h3>
+                            <span class="text-xs text-red-400 font-semibold px-2 py-0.5 rounded bg-red-950/60 border border-red-500/30">Miniature Cars</span>
+                        </div>
+                        <p class="text-brand-grey text-xs leading-relaxed mb-4">
+                            Handmade miniature cars, custom car models, product gallery with prices and direct order buttons.
+                        </p>
+                        <div class="flex items-center gap-2 mb-6 text-[10px] font-mono text-gray-400">
+                            <span class="px-2 py-1 rounded bg-brand-surface">Silver & Red</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">Showcase</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDemoModal('AUTOCRAFT', 'Automotive hobbyist and handmade custom model car store website.', 'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=1200&q=80')" class="px-3 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red text-center">
+                                View Demo
+                            </button>
+                            <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20want%20a%20website%20similar%20to%20AUTOCRAFT." target="_blank" class="px-3 py-2 rounded-lg bg-brand-red text-xs font-bold text-white hover:bg-red-600 text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO PROJECT 06 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group" data-category="services">
+                    <div class="relative h-56 bg-brand-black overflow-hidden">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-brand-black/80 border border-brand-red/40 text-[10px] font-bold uppercase text-brand-red backdrop-blur-md">
+                            Concept Design
+                        </span>
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" 
+                             alt="TK ELECTRION Preview" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
+                             onerror="this.src='https://placehold.co/800x600/080808/eab308?text=TK+ELECTRION'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-extrabold text-white">TK ELECTRION</h3>
+                            <span class="text-xs text-yellow-400 font-semibold px-2 py-0.5 rounded bg-yellow-950/60 border border-yellow-500/30">Electrical</span>
+                        </div>
+                        <p class="text-brand-grey text-xs leading-relaxed mb-4">
+                            Electrical installation services, repairs & maintenance overview, service categories, and emergency contact.
+                        </p>
+                        <div class="flex items-center gap-2 mb-6 text-[10px] font-mono text-gray-400">
+                            <span class="px-2 py-1 rounded bg-brand-surface">Navy & Yellow</span>
+                            <span class="px-2 py-1 rounded bg-brand-surface">Service Portal</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openDemoModal('TK ELECTRION', 'Professional electrical technician and service provider layout concept.', 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80')" class="px-3 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-bold text-white hover:border-brand-red text-center">
+                                View Demo
+                            </button>
+                            <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20want%20a%20website%20similar%20to%20TK%20ELECTRION." target="_blank" class="px-3 py-2 rounded-lg bg-brand-red text-xs font-bold text-white hover:bg-red-600 text-center flex items-center justify-center gap-1">
+                                <i class="fa-brands fa-whatsapp"></i> Request
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Viewing Demo Details -->
+    <div id="demo-modal" class="fixed inset-0 z-[100] bg-brand-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-brand-surface border border-white/10 rounded-2xl max-w-2xl w-full p-6 relative">
+            <button onclick="closeDemoModal()" class="absolute top-4 right-4 text-brand-grey hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="modal-title" class="text-2xl font-black text-white mb-2"></h3>
+            <p id="modal-desc" class="text-brand-grey text-sm mb-4"></p>
+            <div class="rounded-xl overflow-hidden aspect-video bg-brand-black mb-6">
+                <img id="modal-img" src="" alt="Demo Preview" class="w-full h-full object-cover">
+            </div>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeDemoModal()" class="px-5 py-2.5 rounded-xl bg-brand-black text-white text-xs font-bold border border-white/10">Close</button>
+                <a id="modal-wa-btn" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-brand-red text-white text-xs font-bold shadow-neon-red flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Request Similar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         07. WEBSITE PACKAGES SECTION
+    =========================================== -->
+    <section id="packages" class="py-24 grid-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-brand-red uppercase tracking-widest px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20">Transparent Pricing</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-4">WEBSITE PACKAGES</h2>
+                <p class="text-brand-grey mt-4 text-base">Select the perfect package for your business. Affordable pricing in Sri Lankan Rupees (LKR) with no hidden fees.</p>
+            </div>
+
+            <!-- Pricing Cards Grid (5 Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                
+                <!-- PACKAGE 01 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-white/10 hover:border-brand-red/50">
+                    <div>
+                        <span class="text-[10px] font-mono text-brand-grey uppercase tracking-wider">PACKAGE 01</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">STARTER WEBSITE</h3>
+                        <p class="text-xs text-brand-grey mt-1 mb-4">Best for individuals and very small businesses.</p>
+                        <div class="my-4 pb-4 border-b border-white/10">
+                            <span class="text-2xl sm:text-3xl font-black text-brand-red">Rs. 5,000</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-brand-grey">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>One-page website</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Up to 5 content sections</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Mobile-responsive layout</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Business introduction</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>WhatsApp contact button</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Basic SEO setup</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>1 round minor revision</span></li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Starter%20Website%20package%20for%20Rs.%205%2C000.%20Please%20send%20me%20the%20details." 
+                       target="_blank" 
+                       class="mt-8 w-full py-3 rounded-xl bg-brand-surface border border-white/20 text-white text-xs font-bold hover:border-brand-red hover:text-brand-red transition-all text-center block">
+                        Choose Starter — Rs. 5,000
+                    </a>
+                </div>
+
+                <!-- PACKAGE 02 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-white/10 hover:border-brand-red/50">
+                    <div>
+                        <span class="text-[10px] font-mono text-brand-grey uppercase tracking-wider">PACKAGE 02</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">BASIC BUSINESS</h3>
+                        <p class="text-xs text-brand-grey mt-1 mb-4">Best for small shops and local service providers.</p>
+                        <div class="my-4 pb-4 border-b border-white/10">
+                            <span class="text-2xl sm:text-3xl font-black text-white">Rs. 10,000</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-brand-grey">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Up to 3 website pages</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Mobile-responsive design</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Home, About, Services</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>WhatsApp integration</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Contact form design</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Social media links</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>2 rounds minor revisions</span></li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Basic%20Business%20Website%20package%20for%20Rs.%2010%2C000.%20Please%20send%20me%20the%20details." 
+                       target="_blank" 
+                       class="mt-8 w-full py-3 rounded-xl bg-brand-surface border border-white/20 text-white text-xs font-bold hover:border-brand-red hover:text-brand-red transition-all text-center block">
+                        Choose Basic — Rs. 10,000
+                    </a>
+                </div>
+
+                <!-- PACKAGE 03 (HIGHLIGHTED FEATURED) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-brand-red/60 shadow-neon-red relative bg-brand-surface/80 transform lg:-translate-y-2">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-brand-red text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                        RECOMMENDED
+                    </span>
+                    <div>
+                        <span class="text-[10px] font-mono text-brand-red uppercase tracking-wider font-bold">PACKAGE 03</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">PROFESSIONAL</h3>
+                        <p class="text-xs text-brand-grey mt-1 mb-4">Best for growing businesses & tuition teachers.</p>
+                        <div class="my-4 pb-4 border-b border-white/10">
+                            <span class="text-2xl sm:text-3xl font-black text-brand-red">Rs. 15,000</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-gray-200">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Up to 5 website pages</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Custom-style layout</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Home, About, Services, Portfolio, Contact</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>WhatsApp enquiry buttons</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Image gallery / portfolio</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Basic on-page SEO</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>3 rounds minor revisions</span></li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Professional%20Website%20package%20for%20Rs.%2015%2C000.%20Please%20send%20me%20the%20details." 
+                       target="_blank" 
+                       class="mt-8 w-full py-3 rounded-xl bg-brand-red text-white text-xs font-extrabold hover:bg-red-600 transition-all text-center block shadow-neon-red">
+                        Choose Professional — Rs. 15,000
+                    </a>
+                </div>
+
+                <!-- PACKAGE 04 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-white/10 hover:border-brand-red/50">
+                    <div>
+                        <span class="text-[10px] font-mono text-brand-grey uppercase tracking-wider">PACKAGE 04</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">ADVANCED BUSINESS</h3>
+                        <p class="text-xs text-brand-grey mt-1 mb-4">Best for businesses needing expanded pages.</p>
+                        <div class="my-4 pb-4 border-b border-white/10">
+                            <span class="text-2xl sm:text-3xl font-black text-white">Rs. 20,000</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-brand-grey">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Up to 7 website pages</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Advanced visual design</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Product showcase section</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Advanced portfolio section</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>FAQ Section & Google Maps</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Social media integration</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>3 rounds minor revisions</span></li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Advanced%20Business%20Website%20package%20for%20Rs.%2020%2C000.%20Please%20send%20me%20the%20details." 
+                       target="_blank" 
+                       class="mt-8 w-full py-3 rounded-xl bg-brand-surface border border-white/20 text-white text-xs font-bold hover:border-brand-red hover:text-brand-red transition-all text-center block">
+                        Choose Advanced — Rs. 20,000
+                    </a>
+                </div>
+
+                <!-- PACKAGE 05 -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-white/10 hover:border-brand-red/50">
+                    <div>
+                        <span class="text-[10px] font-mono text-brand-grey uppercase tracking-wider">PACKAGE 05</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">PREMIUM WEBSITE</h3>
+                        <p class="text-xs text-brand-grey mt-1 mb-4">Comprehensive digital presence.</p>
+                        <div class="my-4 pb-4 border-b border-white/10">
+                            <span class="text-2xl sm:text-3xl font-black text-brand-red">Rs. 25,000</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-brand-grey">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Up to 10 website pages</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Premium custom design</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Subtle custom animations</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Expanded product showcase</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>Google Maps & FAQ</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>On-page SEO optimization</span></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> <span>4 rounds minor revisions</span></li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20am%20interested%20in%20the%20Premium%20Website%20package%20for%20Rs.%2025%2C000.%20Please%20send%20me%20the%20details." 
+                       target="_blank" 
+                       class="mt-8 w-full py-3 rounded-xl bg-brand-surface border border-white/20 text-white text-xs font-bold hover:border-brand-red hover:text-brand-red transition-all text-center block">
+                        Choose Premium — Rs. 25,000
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Important Package Conditions Notice -->
+            <div class="mt-12 p-6 rounded-2xl bg-brand-surface border border-white/10 text-xs text-brand-grey leading-relaxed">
+                <p class="font-bold text-white mb-2"><i class="fa-solid fa-triangle-exclamation text-brand-red mr-1"></i> Important Package Conditions & Details:</p>
+                <p>Domain registration, hosting, paid templates, paid plugins, ongoing maintenance, professional copywriting, e-commerce checkout, and payment gateways are separate unless explicitly agreed in writing. Minor revisions include simple text/image edits and layout adjustments within agreed boundaries. Project scope confirmed prior to start.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         08. PACKAGE COMPARISON TABLE
+    =========================================== -->
+    <section class="py-20 bg-brand-surface border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-black text-white">PACKAGE COMPARISON</h2>
+                <p class="text-brand-grey text-sm mt-2">Compare all feature inclusions side by side.</p>
+            </div>
+
+            <!-- Responsive Table Wrapper -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-brand-grey border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="border-b border-white/10 text-white font-bold bg-brand-black">
+                            <th class="p-4">Feature</th>
+                            <th class="p-4 text-center">Starter</th>
+                            <th class="p-4 text-center">Basic</th>
+                            <th class="p-4 text-center text-brand-red">Professional</th>
+                            <th class="p-4 text-center">Advanced</th>
+                            <th class="p-4 text-center">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr class="hover:bg-white/5">
+                            <td class="p-4 font-bold text-white">Website Pages</td>
+                            <td class="p-4 text-center">1 Page</td>
+                            <td class="p-4 text-center">Up to 3</td>
+                            <td class="p-4 text-center text-white font-bold">Up to 5</td>
+                            <td class="p-4 text-center">Up to 7</td>
+                            <td class="p-4 text-center">Up to 10</td>
+                        </tr>
+                        <tr class="hover:bg-white/5">
+                            <td class="p-4 font-bold text-white">Responsive Layout</td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr class="hover:bg-white/5">
+                            <td class="p-4 font-bold text-white">WhatsApp Integration</td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr class="hover:bg-white/5">
+                            <td class="p-4 font-bold text-white">Portfolio / Gallery</td>
+                            <td class="p-4 text-center">Basic</td>
+                            <td class="p-4 text-center">Basic</td>
+                            <td class="p-4 text-center text-white font-bold">Yes</td>
+                            <td class="p-4 text-center">Expanded</td>
+                            <td class="p-4 text-center">Advanced</td>
+                        </tr>
+                        <tr class="hover:bg-white/5">
+                            <td class="p-4 font-bold text-white">Contact Form</td>
+                            <td class="p-4 text-center">Details Only</td>
+                            <td class="p-4 text-center">Design</td>
+                            <td class="p-4 text-center text-white font-bold">Yes</td>
+                            <td class="p-4 text-center">Yes</td>
+                            <td class="p-4 text-center">Yes</td>
+                        </tr>
+                        <tr class="hover:bg-white/5">
+                            <td class="p-4 font-bold text-white">Basic SEO Setup</td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                            <td class="p-4 text-center text-emerald-400"><i class="fa-solid fa-check"></i></td>
+                        </tr>
+                        <tr class="bg-brand-black/60 font-black text-white">
+                            <td class="p-4">Package Price</td>
+                            <td class="p-4 text-center text-brand-red">Rs. 5,000</td>
+                            <td class="p-4 text-center">Rs. 10,000</td>
+                            <td class="p-4 text-center text-brand-red text-sm">Rs. 15,000</td>
+                            <td class="p-4 text-center">Rs. 20,000</td>
+                            <td class="p-4 text-center text-brand-red">Rs. 25,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         09. OUR PROCESS SECTION
+    =========================================== -->
+    <section class="py-24 grid-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold text-brand-red uppercase tracking-widest px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20">Simple Workflow</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-4">HOW IT WORKS</h2>
+                <p class="text-brand-grey mt-4 text-base">Four straightforward steps to launch your new website online.</p>
+            </div>
+
+            <!-- Process Timeline -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                
+                <!-- STEP 01 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-red text-white font-black text-xl flex items-center justify-center mb-6 shadow-neon-red">
+                            01
+                        </div>
+                        <h3 class="text-lg font-extrabold text-white mb-2">Choose Your Package</h3>
+                        <p class="text-xs text-brand-grey leading-relaxed">
+                            Select the package that fits your business needs and budget from our five transparent offerings.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STEP 02 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-surface border border-brand-red/50 text-brand-red font-black text-xl flex items-center justify-center mb-6">
+                            02
+                        </div>
+                        <h3 class="text-lg font-extrabold text-white mb-2">Discuss Requirements</h3>
+                        <p class="text-xs text-brand-grey leading-relaxed">
+                            Share your business details, logo, content, images, and preferred styling options via WhatsApp.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STEP 03 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-surface border border-brand-red/50 text-brand-red font-black text-xl flex items-center justify-center mb-6">
+                            03
+                        </div>
+                        <h3 class="text-lg font-extrabold text-white mb-2">Design & Review</h3>
+                        <p class="text-xs text-brand-grey leading-relaxed">
+                            We build the demo website, share preview links, and incorporate your minor revision requests.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STEP 04 -->
+                <div class="glass-card p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-surface border border-brand-red/50 text-brand-red font-black text-xl flex items-center justify-center mb-6">
+                            04
+                        </div>
+                        <h3 class="text-lg font-extrabold text-white mb-2">Launch Your Website</h3>
+                        <p class="text-xs text-brand-grey leading-relaxed">
+                            Publish your site online after final approval and arrange domain & hosting setup as agreed.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         10. FREQUENTLY ASKED QUESTIONS (FAQ)
+    =========================================== -->
+    <section id="faq" class="py-24 bg-brand-surface border-t border-b border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-brand-red uppercase tracking-widest px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20">Got Questions?</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-4">FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+
+            <!-- FAQ Accordion List -->
+            <div class="space-y-4">
+                
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-extrabold text-white text-base">How much does a website cost?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-xs text-brand-grey leading-relaxed">
+                        <p class="pb-6">THINEXON PRIME offers five proposed website packages starting from Rs. 5,000 up to Rs. 25,000 based on required page count and features.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-extrabold text-white text-base">Are domain and hosting included?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-xs text-brand-grey leading-relaxed">
+                        <p class="pb-6">Domain registration and web hosting are separate costs unless specifically agreed upon in writing during project setup.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-extrabold text-white text-base">Will my website work on mobile phones?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-xs text-brand-grey leading-relaxed">
+                        <p class="pb-6">Yes! All five website packages are fully responsive and optimized for seamless viewing across smartphones, tablets, and desktop displays.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-extrabold text-white text-base">Can I request changes to my website?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-xs text-brand-grey leading-relaxed">
+                        <p class="pb-6">Each package includes a specified allowance of minor revisions (ranging from 1 to 4 rounds) during the design review phase.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-extrabold text-white text-base">Can I sell products through my website?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-xs text-brand-grey leading-relaxed">
+                        <p class="pb-6">We build Product Showcase Websites with direct WhatsApp ordering. Full automated e-commerce with payment gateways can be quoted separately.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="glass-card rounded-2xl overflow-hidden border-white/10">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-extrabold text-white text-base">How do I place an order?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-red transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6 pb-0 text-xs text-brand-grey leading-relaxed">
+                        <p class="pb-6">Simply click any WhatsApp button or use our contact form to message THINEXON PRIME directly with your requirements!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         11. CONTACT US SECTION
+    =========================================== -->
+    <section id="contact" class="py-24 grid-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Left Info Banner -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold text-brand-red uppercase tracking-widest px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">LET'S BUILD YOUR DIGITAL FUTURE.</h2>
+                    <p class="text-brand-grey text-sm leading-relaxed">
+                        Ready to bring your business online? Select your preferred package or send us your details directly through WhatsApp.
+                    </p>
+
+                    <!-- Contact Details Box -->
+                    <div class="space-y-4 pt-4">
+                        <div class="p-4 rounded-xl bg-brand-surface border border-white/10 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-red text-xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-brand-grey uppercase">WhatsApp / Call</p>
+                                <p class="text-base font-extrabold text-white">0777188877</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-brand-surface border border-white/10 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-red/20 border border-brand-red/40 flex items-center justify-center text-brand-red text-xl">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-brand-grey uppercase">Location</p>
+                                <p class="text-base font-extrabold text-white">Sri Lanka</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp CTA -->
+                    <a href="https://wa.me/94777188877?text=Hello%20THINEXON%20PRIME!%20I%20would%20like%20to%20discuss%20a%20website%20project." 
+                       target="_blank" 
+                       class="light-sweep-element w-full py-4 rounded-xl bg-brand-red text-white text-sm font-extrabold shadow-neon-red hover:bg-red-600 transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Chat Directly on WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Right Interactive WhatsApp Message Form -->
+                <div class="lg:col-span-7">
+                    <form onsubmit="handleContactSubmit(event)" class="glass-card p-8 rounded-2xl border-white/10 space-y-4">
+                        <h3 class="text-xl font-extrabold text-white mb-2">Send Inquiry via WhatsApp</h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-grey mb-1">Your Name *</label>
+                                <input type="text" id="form-name" required placeholder="e.g. Nimal Perera" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white text-xs focus:border-brand-red focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-grey mb-1">Business Name</label>
+                                <input type="text" id="form-business" placeholder="e.g. Perera Traders" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white text-xs focus:border-brand-red focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-grey mb-1">Preferred Package *</label>
+                                <select id="form-package" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white text-xs focus:border-brand-red focus:outline-none">
+                                    <option value="Starter (Rs. 5,000)">Starter Website — Rs. 5,000</option>
+                                    <option value="Basic Business (Rs. 10,000)">Basic Business — Rs. 10,000</option>
+                                    <option value="Professional (Rs. 15,000)" selected>Professional — Rs. 15,000</option>
+                                    <option value="Advanced Business (Rs. 20,000)">Advanced Business — Rs. 20,000</option>
+                                    <option value="Premium (Rs. 25,000)">Premium — Rs. 25,000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-grey mb-1">Business Category</label>
+                                <input type="text" id="form-category" placeholder="e.g. Retail Shop, Tuition Class" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white text-xs focus:border-brand-red focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-grey mb-1">Contact Number *</label>
+                            <input type="tel" id="form-phone" required placeholder="077XXXXXXX" class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white text-xs focus:border-brand-red focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-grey mb-1">Project Description / Ideas</label>
+                            <textarea id="form-desc" rows="3" placeholder="Briefly describe what you need on your website..." class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white text-xs focus:border-brand-red focus:outline-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-white text-brand-black text-xs font-extrabold hover:bg-gray-200 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i>
+                            <span>Compile & Send on WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         12. FOOTER SECTION
+    =========================================== -->
+    <footer class="bg-brand-black relative pt-16 pb-8 border-t border-brand-red/30">
+        <!-- Neon Red Divider Accent -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-red to-transparent shadow-neon-red"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Brand Info Column -->
+                <div class="space-y-4">
+                    <a href="#home" class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-surface border border-brand-red/50 flex items-center justify-center shadow-neon-red">
+                            <i class="fa-solid fa-bolt text-brand-red text-sm"></i>
+                        </div>
+                        <span class="text-lg font-black text-white">THINEXON <span class="text-brand-red">PRIME</span></span>
+                    </a>
+                    <p class="text-xs text-brand-grey leading-relaxed">
+                        MODERN WEBSITES. AFFORDABLE SOLUTIONS.
+                    </p>
+                    <p class="text-xs text-gray-400">
+                        Dedicated web design agency helping Sri Lankan businesses thrive online.
+                    </p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-brand-grey">
+                        <li><a href="#home" class="hover:text-brand-red transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-brand-red transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-brand-red transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-brand-red transition-colors">Portfolio</a></li>
+                        <li><a href="#packages" class="hover:text-brand-red transition-colors">Packages</a></li>
+                    </ul>
+                </div>
+
+                <!-- Package Quick Links -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Packages</h4>
+                    <ul class="space-y-2 text-xs text-brand-grey">
+                        <li><a href="#packages" class="hover:text-brand-red transition-colors">Starter (Rs. 5,000)</a></li>
+                        <li><a href="#packages" class="hover:text-brand-red transition-colors">Basic (Rs. 10,000)</a></li>
+                        <li><a href="#packages" class="hover:text-brand-red transition-colors">Professional (Rs. 15,000)</a></li>
+                        <li><a href="#packages" class="hover:text-brand-red transition-colors">Advanced (Rs. 20,000)</a></li>
+                        <li><a href="#packages" class="hover:text-brand-red transition-colors">Premium (Rs. 25,000)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contact</h4>
+                    <p class="text-xs text-brand-grey mb-2"><i class="fa-brands fa-whatsapp text-brand-red mr-1"></i> 0777188877</p>
+                    <p class="text-xs text-brand-grey mb-4"><i class="fa-solid fa-earth-asia text-brand-red mr-1"></i> Sri Lanka</p>
+                    <a href="https://wa.me/94777188877" target="_blank" class="inline-block px-4 py-2 rounded-lg bg-brand-surface border border-brand-red/30 text-xs font-bold text-brand-red hover:bg-brand-red hover:text-white transition-colors">
+                        WhatsApp Contact
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-grey">
+                <p>&copy; <span id="copyright-year">2026</span> THINEXON PRIME. All rights reserved.</p>
+                <button onclick="scrollToTop()" class="flex items-center gap-2 text-brand-grey hover:text-brand-red transition-colors">
+                    <span>Back to Top</span>
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT INTERACTION LOGIC
+    =========================================== -->
+    <script>
+        // Update Copyright Year automatically
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+        // Check Session Storage for Intro Screen
+        window.addEventListener('DOMContentLoaded', () => {
+            const hasSeenIntro = sessionStorage.getItem('thinexon_intro_seen');
+            const introScreen = document.getElementById('intro-screen');
+            
+            if (hasSeenIntro) {
+                introScreen.style.display = 'none';
+            } else {
+                // Intro Animation Sequence
+                setTimeout(() => {
+                    const logo = document.getElementById('intro-logo');
+                    if (logo) logo.classList.remove('opacity-0', 'scale-75');
+                }, 100);
+
+                setTimeout(() => {
+                    const title = document.getElementById('intro-title');
+                    if (title) title.classList.remove('opacity-0');
+                }, 500);
+
+                setTimeout(() => {
+                    const tagline = document.getElementById('intro-tagline');
+                    if (tagline) tagline.classList.remove('opacity-0');
+                }, 900);
+
+                setTimeout(() => {
+                    dismissIntro();
+                }, 3200);
+            }
+        });
+
+        function dismissIntro() {
+            const introScreen = document.getElementById('intro-screen');
+            if (introScreen) {
+                introScreen.classList.add('opacity-0');
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                    sessionStorage.setItem('thinexon_intro_seen', 'true');
+                }, 700);
+            }
+        }
+
+        // Desktop Floating Cursor Glow effect
+        const cursorGlow = document.getElementById('cursor-glow');
+        if (cursorGlow && window.innerWidth >= 768) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Mobile Hamburger Drawer Navigation
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Portfolio Filtering Logic
+        function filterPortfolio(category) {
+            const cards = document.querySelectorAll('.portfolio-card');
+            const buttons = document.querySelectorAll('.portfolio-filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.remove('bg-brand-black', 'text-brand-grey');
+                    btn.classList.add('bg-brand-red', 'text-white');
+                } else {
+                    btn.classList.remove('bg-brand-red', 'text-white');
+                    btn.classList.add('bg-brand-black', 'text-brand-grey');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Demo Preview Modal
+        function openDemoModal(title, description, imgSrc) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = description;
+            document.getElementById('modal-img').src = imgSrc;
+            
+            const waMsg = encodeURIComponent(`Hello THINEXON PRIME! I want a website similar to ${title}.`);
+            document.getElementById('modal-wa-btn').href = `https://wa.me/94777188877?text=${waMsg}`;
+
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+                document.querySelectorAll('#faq i').forEach(i => i.style.transform = 'rotate(0deg)');
+                
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Form Submit Redirection to WhatsApp
+        function handleContactSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('form-name').value;
+            const business = document.getElementById('form-business').value || 'N/A';
+            const selectedPackage = document.getElementById('form-package').value;
+            const category = document.getElementById('form-category').value || 'N/A';
+            const phone = document.getElementById('form-phone').value;
+            const desc = document.getElementById('form-desc').value || 'No additional details provided.';
+
+            const message = `Hello THINEXON PRIME!
+I am interested in starting a website project.
+
+*Name:* ${name}
+*Business Name:* ${business}
+*Selected Package:* ${selectedPackage}
+*Business Category:* ${category}
+*Contact Number:* ${phone}
+*Project Details:* ${desc}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/94777188877?text=${encodedMessage}`, '_blank');
+        }
+
+        // Smooth Back To Top Scroll
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
